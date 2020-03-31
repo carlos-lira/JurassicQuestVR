@@ -438,6 +438,9 @@ PlayerSettings:
     m_Enabled: 1
     m_Devices:
     - Oculus
+  - m_BuildTarget: Windows Store Apps
+    m_Enabled: 1
+    m_Devices: []
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
@@ -764,7 +767,7 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: 53d926e2-bebe-4c33-9cb0-25ef9422983d
   framebufferDepthMemorylessMode: 0
-  projectName: TestProject
+  projectName: JurassicQuestVR
   organizationId: trapchaozcloud
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
