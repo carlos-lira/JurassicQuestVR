@@ -1,3 +1,3 @@
 # JurassicQuestVR
-Carlos E. Lira
+Carlos E. Lira<br/>
 UOC Videogame - TFG
