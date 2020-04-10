@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,15 +11,22 @@ public class Enemy : MonoBehaviour
     public float enemyHealth = 3f;
     public bool inCombat = false;
 
+    private Animator anim;
+    private NavMeshAgent agent;
+
 
     private void Start()
     {
         //new
         levelManager = FindObjectOfType<LevelManager>();
+        anim = GetComponentInChildren<Animator>();
+        agent = GetComponentInChildren<NavMeshAgent>();
     }
 
     public void EnemyHit(float damageTaken)
     {
+        anim.SetBool("Hit", true);
+
         if (!inCombat) 
             EnterCombat();
 
@@ -27,7 +35,9 @@ public class Enemy : MonoBehaviour
         if (enemyHealth == 0)
         {
             levelManager.EnemyKilled();
-            Destroy(gameObject, 0.5f);
+            anim.SetBool("Dead", true);
+            agent.speed = agent.speed / 2;
+            Destroy(gameObject, 3f);
         }
     }
 

@@ -24,7 +24,7 @@ public class ProtectionLogic : LevelManager
     public Transform spawnPointsHolder;
     private Transform[] spawnPoints;
     public GameObject raptor;
-    public Transform trex;
+
 
     private void Awake()
     {

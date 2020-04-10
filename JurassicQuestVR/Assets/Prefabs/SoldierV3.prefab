@@ -280,7 +280,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3475020286836082561}
-  m_LocalRotation: {x: -0.00020005532, y: 0.0052113603, z: -0.04368905, w: 0.99903154}
+  m_LocalRotation: {x: -0.00020005534, y: 0.0052113603, z: -0.043689054, w: 0.99903154}
   m_LocalPosition: {x: -0.51009345, y: -0.000000006055832, z: -0.000000012111664}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children:
@@ -409,13 +409,13 @@ GameObject:
   - component: {fileID: 3475020286952086410}
   - component: {fileID: 3475020286952086411}
   - component: {fileID: 3475020286952086420}
-  - component: {fileID: 3475020286952086421}
   - component: {fileID: 3475020286952086422}
   - component: {fileID: 3475020286952086423}
   - component: {fileID: 3475020286952086416}
   - component: {fileID: 3475020286952086417}
   - component: {fileID: 6244598681385562554}
   - component: {fileID: 1339916013954608639}
+  - component: {fileID: 2052403175270306929}
   m_Layer: 17
   m_Name: SoldierV3
   m_TagString: Enemy
@@ -515,33 +515,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 2
---- !u!114 &3475020286952086421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475020286952086419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11322d1e211b3ee4faa2a265daf3005d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
-  speed: 5
-  waitTime: 5
-  isStationary: 1
-  returnSameDirection: 1
-  turnSpeed: 180
-  pathHolder: {fileID: 0}
-  timeToLose: 1
-  combatEnabled: 1
-  spotLight: {fileID: 3475020287268464744}
-  viewDistance: 20
-  viewAngle: 150
-  viewMask:
-    serializedVersion: 2
-    m_Bits: 60432
 --- !u!82 &3475020286952086422
 AudioSource:
   m_ObjectHideFlags: 0
@@ -717,7 +690,7 @@ Animator:
   m_GameObject: {fileID: 3475020286952086419}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
-  m_Controller: {fileID: 9100000, guid: 84a572496ccfd5c4ba2d1908054a6fb0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 675c74f1265334641977646d5fa9b733, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -726,6 +699,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2052403175270306929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475020286952086419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5755dee01908f404e9a545490bbe7138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelManager: {fileID: 0}
+  speed: 5
+  waitTime: 5
+  isStationary: 1
+  returnSameDirection: 1
+  turnSpeed: 90
+  pathHolder: {fileID: 0}
+  timeToLose: 1
+  combatEnabled: 1
+  spotLight: {fileID: 3475020287268464744}
+  viewDistance: 50
+  viewAngle: 160
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 52240
 --- !u!1 &3475020287052245616
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +905,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3475020287260902791}
-  m_LocalRotation: {x: 0.00020005148, y: -0.0052114474, z: -0.04368905, w: 0.99903154}
+  m_LocalRotation: {x: 0.0002000515, y: -0.0052114474, z: -0.043689054, w: 0.99903154}
   m_LocalPosition: {x: -0.51009345, y: 0.000000006055832, z: 0.000000024223327}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children:

@@ -1556,9 +1556,9 @@ GameObject:
   - component: {fileID: 1363554471714891296}
   - component: {fileID: 1363554471714824240}
   - component: {fileID: 1363554471707813540}
-  - component: {fileID: 1363554471707813543}
   - component: {fileID: 1363554471707813541}
   - component: {fileID: 1363554471707813538}
+  - component: {fileID: -4959823789856978735}
   m_Layer: 17
   m_Name: VelociraptorEnemyV2
   m_TagString: Enemy
@@ -1834,25 +1834,6 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   enemyHealth: 3
   inCombat: 0
---- !u!114 &1363554471707813543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363554471707813542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b85ba23af7ab47429804b1c51ae6fe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewMask:
-    serializedVersion: 2
-    m_Bits: 0
-  rangedEnemy: 0
-  attackSound: {fileID: 8300000, guid: 40f00aec0e9bb994298283db24b0b198, type: 3}
-  accuracy: 1
-  damage: 1
 --- !u!195 &1363554471707813541
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1864,10 +1845,10 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 1
   m_Speed: 15
-  m_Acceleration: 10
+  m_Acceleration: 300
   avoidancePriority: 50
-  m_AngularSpeed: 300
-  m_StoppingDistance: 6
+  m_AngularSpeed: 360
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1885,7 +1866,7 @@ Animator:
   m_GameObject: {fileID: 1363554471707813542}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8483fcf9106f5bf4892d242f44126eb5, type: 3}
-  m_Controller: {fileID: 9100000, guid: 86f17899f2c88a14e980c27b216e0d36, type: 2}
+  m_Controller: {fileID: 9100000, guid: d6a167e0c23ca174e88dc52d7c940fb8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1894,6 +1875,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-4959823789856978735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363554471707813542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e82e16304846fa45b4cd06b8af6b64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 52240
+  attackSound: {fileID: 8300000, guid: 40f00aec0e9bb994298283db24b0b198, type: 3}
+  warningSounds:
+  - {fileID: 8300000, guid: fbc4e794ae79770479a02d03c28e5fd0, type: 3}
+  - {fileID: 8300000, guid: 2eb9c0f8fff320c4abc853c0401ee742, type: 3}
+  accuracy: 1
+  damage: 1
 --- !u!1 &1363554471707814978
 GameObject:
   m_ObjectHideFlags: 0

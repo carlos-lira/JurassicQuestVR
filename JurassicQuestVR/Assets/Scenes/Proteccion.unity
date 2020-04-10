@@ -871,7 +871,6 @@ MonoBehaviour:
   timeBetweenWaves: 30
   spawnPointsHolder: {fileID: 428750449}
   raptor: {fileID: 1363554471707813542, guid: 1f467c3192ae7bc4381d6077045e54e7, type: 3}
-  trex: {fileID: 0}
 --- !u!114 &574435826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1806,6 +1805,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1714217531069876622, guid: 931d9fb1545f4c24ea0f0e3043c47f52,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 20b5ffb9607e563468feea8f6b6b7394, type: 2}
     - target: {fileID: 1714217531079313882, guid: 931d9fb1545f4c24ea0f0e3043c47f52,
         type: 3}
       propertyPath: m_Name
@@ -2179,6 +2183,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8855179445368305748, guid: a6680b448ea8d8542ab5ae5bac69c615,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 51.69
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8855179444269642924, guid: a6680b448ea8d8542ab5ae5bac69c615, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a6680b448ea8d8542ab5ae5bac69c615, type: 3}
@@ -2281,7 +2290,7 @@ PrefabInstance:
     - target: {fileID: 4625855614140417572, guid: 0b80f4757f3a5da42bc563c5596fe431,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 62
+      value: 57.29
       objectReference: {fileID: 0}
     - target: {fileID: 4625855614140417572, guid: 0b80f4757f3a5da42bc563c5596fe431,
         type: 3}

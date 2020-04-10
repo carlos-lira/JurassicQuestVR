@@ -30,15 +30,15 @@ public class SoldierPatrol : MonoBehaviour
     private float timeSpotted = 0f;
 
     private Animator anim;
-    private bool isWalking = false;
-    private bool isTurningAroundLeft = false;
-    private bool isTurningAroundRight = false;
-    private bool isTurningRight = false;
-    private bool isTurningLeft = false;
-    private bool isDead = false;
-    private bool isDamaged = false;
-    private bool isShooting = false;
-    private bool isSpotted = false;
+    private bool walk;
+    private bool inCombat;
+    private bool playerSpotted;
+    private bool shoot;
+    private bool run;
+    private bool hit;
+    private float turnAngle;
+    private bool turn;
+    private bool dead;
 
     private bool playerDetected = false;
     private bool playerEngageCombat = false;
@@ -59,7 +59,7 @@ public class SoldierPatrol : MonoBehaviour
 
         if (!isStationary)
         {
-            isWalking = true;
+            walk = true;
             Vector3[] waypoints = new Vector3[pathHolder.childCount];
             for (int i = 0; i < waypoints.Length; i++)
             {
@@ -78,12 +78,18 @@ public class SoldierPatrol : MonoBehaviour
             if (CanSeePlayer())
             {
                 playerDetected = true;
+
+                //Player Spotted
+                anim.SetBool("PlayerSpotted", true);
                 spotLight.color = Color.yellow;
                 timeSpotted += Time.deltaTime;
             }
             else
             {
                 playerDetected = false;
+
+                //Back to patrolling
+                anim.SetBool("PlayerSpotted", false);
                 timeSpotted -= Time.deltaTime;
             }
         }
@@ -105,41 +111,15 @@ public class SoldierPatrol : MonoBehaviour
         if (timeSpotted == 0)
             spotLight.color = originalSpotLightColor;
 
-        Animate();
-
     }
 
-    private void SetAllAnimationsFalse()
-    {
-        isWalking = false;
-        isTurningLeft = false;
-        isTurningAroundLeft = false;
-        isTurningRight = false;
-        isTurningAroundRight = false;
-        isSpotted = false;
-        isShooting = false;
-        isDamaged = false;
-        isDead = false;
-    }
 
-    private void Animate() 
-    {
-        anim.SetBool("isWalking", isWalking);
-        anim.SetBool("isTurningLeft", isTurningLeft);
-        anim.SetBool("isTurningRight", isTurningRight);
-        anim.SetBool("isTurningAroundLeft", isTurningAroundLeft);
-        anim.SetBool("isTurningAroundRight", isTurningAroundRight);
-        anim.SetBool("isSpotted", isSpotted);
-        anim.SetBool("isShooting", isShooting);
-        anim.SetBool("isDamaged", isDamaged);
-        anim.SetBool("isDead", isDead);
-    }
 
     public void EnterCombat() 
     {
         spotLight.color = Color.red;
-        SetAllAnimationsFalse();
-        Animate();
+        //Change the animator to the CombatStateMachine
+        anim.SetBool("InCombat", true);
         GetComponent<EnemyAttack>().enabled = true;
         StopAllCoroutines();
         GetComponent<SoldierPatrol>().enabled = false;
@@ -166,7 +146,8 @@ public class SoldierPatrol : MonoBehaviour
                 distance.y = 0;
                 if (Mathf.Abs(distance.magnitude) <= 0.5f)
                 {
-                    isWalking = false;
+                    //Stop walking
+                    anim.SetBool("Walk", false);
 
                     if (returnSameDirection)
                     {
@@ -193,28 +174,20 @@ public class SoldierPatrol : MonoBehaviour
                 }
                 else
                 {
-                    isWalking = true;
-                    isSpotted = false;
-                    isTurningRight = false;
-                    isTurningLeft = false;
-                    isTurningAroundLeft = false;
-                    isTurningAroundRight = false;
+                    //Resume walking
+                    anim.SetBool("Walk", true);
                 }
                 yield return null;
             }
             else
             {
-                isWalking = false;
-                isSpotted = true;
-                isTurningRight = false;
-                isTurningLeft = false;
-                isTurningAroundLeft = false;
-                isTurningAroundRight = false;
+                //Player detected
+                anim.SetBool("PlayerSpotted", true);
                 yield return StartCoroutine(TurnToFace(player.transform.position));
                 yield return new WaitForSeconds(3);
                 yield return StartCoroutine(TurnToFace(targetWaypoint));
-                isWalking = true;
-                isSpotted = false;
+                //isWalking = true;
+                //isSpotted = false;
             }
         }
     }
@@ -226,21 +199,9 @@ public class SoldierPatrol : MonoBehaviour
         
         float turningAngle = Mathf.DeltaAngle(transform.eulerAngles.y, targetAngle);
         
-        if (turningAngle < -120 || turningAngle > 120)
-        {
-            if (turningAngle < 0)
-                isTurningAroundLeft = true;
-            else
-                isTurningAroundRight = true;
-        }
-        else if (turningAngle < 0)
-        {
-            isTurningLeft = true;
-        }
-        else
-        {
-            isTurningRight = true;
-        }
+        anim.SetFloat("TurnAngle", turningAngle);
+        anim.SetBool("Turn", true);
+
         
         while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.y, targetAngle)) > 0.05f)
         {

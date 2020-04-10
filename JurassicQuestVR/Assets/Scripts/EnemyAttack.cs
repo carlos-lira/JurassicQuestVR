@@ -16,35 +16,22 @@ public class EnemyAttack : MonoBehaviour
     public float damage = 1f;
 
     private float shootCooldown = 0.5f;
-    private float biteCooldown = 1f;
     private float shootReady;
-    private float biteReady;
 
-    // Start is called before the first frame update
-    /*
-    void Awake()
-    {
-        shootReady = shootCooldown;
-        biteReady = biteCooldown;
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
-        anim = GetComponentInChildren<Animator>();
-        anim.SetBool("isSpotted", true);
-    }
-    */
+
     void Start()
     {
-        shootReady = shootCooldown;
-        biteReady = biteCooldown;
+        shootReady = 0;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        anim.SetBool("isSpotted", true);
     }
 
     // Update is called once per frame
     void Update()
     {
+        shootReady -= Time.deltaTime;
+
         float distance = Vector3.Distance(transform.position, target.position);
         bool canSee = CanSeePlayer();
         bool inRange = (distance <= agent.stoppingDistance) ? true: false;
@@ -53,18 +40,19 @@ public class EnemyAttack : MonoBehaviour
         {
             agent.SetDestination(target.position);
             agent.isStopped = false;
-            anim.SetBool("isRunning", true);
+            anim.SetBool("Run", true);
 
         }
         else {
             //TARGET IN RANGE AND VISIBLE
+            FaceTarget(target);
 
             //if target is too close, force stop
             if (distance <= 4f)
                 agent.velocity = Vector3.zero;
 
             agent.isStopped = true;
-            anim.SetBool("isRunning", false);
+            anim.SetBool("Run", false);
             Attack();
         }
 
@@ -83,21 +71,9 @@ public class EnemyAttack : MonoBehaviour
 
     void Attack()
     {
-        if (rangedEnemy)
+        if (shootReady <= 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("AimIdle"))
         {
-            Shoot();
-        }
-        else
-        {
-            Bite();
-        }
-    }
-
-    void Shoot()
-    {
-        if (shootReady <= 0)
-        {
-            anim.SetBool("isShooting", true);
+            anim.SetBool("Shoot", true);
             GetComponent<AudioSource>().PlayOneShot(attackSound);
             if (Random.Range(0f, 1f) <= accuracy)
             {
@@ -110,35 +86,17 @@ public class EnemyAttack : MonoBehaviour
             }
             shootReady = shootCooldown;
         }
-        else 
-        {
-            anim.SetBool("isShooting", false);
-            shootReady -= Time.deltaTime;
-        }
 
     }
 
-    void Bite()
+    void FaceTarget(Transform target)
     {
-        if (biteReady <= 0)
-        {
-            //anim.SetBool("isShooting", true);
-            GetComponent<AudioSource>().PlayOneShot(attackSound);
-            if (Random.Range(0f, 1f) <= accuracy)
-            {
-                Debug.Log("hit");
-                target.GetComponent<Player>().PlayerHit(damage);
-            }
-            else
-            {
-                Debug.Log("miss");
-            }
-            biteReady = biteCooldown;
-        }
-        else
-        {
-            biteReady -= Time.deltaTime;
-        }
+        Vector3 direction = (target.position - transform.position).normalized;
 
+        //Removing Y axis to avoid weird model positioning
+        direction = new Vector3(direction.x, 0, direction.z);
+
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 30);
     }
 }

@@ -3907,7 +3907,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5306fbba5747254cb0d9886d7205dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToDisable: []
   mainPlayer: {fileID: 1592466846}
   menuPlayer: {fileID: 146798319}
 --- !u!1 &1558807906 stripped
@@ -4534,6 +4533,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 51650219}
     m_Modifications:
+    - target: {fileID: 2052403175270306929, guid: 18145142641e27040b4b3549accb2ae5,
+        type: 3}
+      propertyPath: pathHolder
+      value: 
+      objectReference: {fileID: 605723189}
+    - target: {fileID: 2052403175270306929, guid: 18145142641e27040b4b3549accb2ae5,
+        type: 3}
+      propertyPath: turnSpeed
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2052403175270306929, guid: 18145142641e27040b4b3549accb2ae5,
+        type: 3}
+      propertyPath: isStationary
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3475020286860554091, guid: 18145142641e27040b4b3549accb2ae5,
         type: 3}
       propertyPath: m_TagString
@@ -4582,7 +4596,7 @@ PrefabInstance:
     - target: {fileID: 3475020286952086418, guid: 18145142641e27040b4b3549accb2ae5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2180.9
+      value: 2179.9
       objectReference: {fileID: 0}
     - target: {fileID: 3475020286952086418, guid: 18145142641e27040b4b3549accb2ae5,
         type: 3}
@@ -4592,7 +4606,7 @@ PrefabInstance:
     - target: {fileID: 3475020286952086418, guid: 18145142641e27040b4b3549accb2ae5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2711.9
+      value: 2716.5
       objectReference: {fileID: 0}
     - target: {fileID: 3475020286952086418, guid: 18145142641e27040b4b3549accb2ae5,
         type: 3}
