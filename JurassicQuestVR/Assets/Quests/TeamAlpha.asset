@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602f202c1838dc642bab3f4cb096c2dd, type: 3}
+  m_Name: TeamAlpha
+  m_EditorClassIdentifier: 
+  questId: 2
+  title: Equipo Alpha
+  history: Has conseguido infiltrarte a traves del portal de MagmaCorp. El portal
+    te ha llevado a una selva la cual no reconoces. Deberas investigar e intentar
+    encontrar que ha sucedido con los antiguos miembros del equipo Alpha.
+  objectives:
+  - Encuentra un arma.
+  - Elimina a los soldados.
+  - Encuentra a Laura.
+  - Sigue las instrucciones de Laura.
+  image: {fileID: 21300000, guid: fccea209f9ea7b1488225287813f4e38, type: 3}

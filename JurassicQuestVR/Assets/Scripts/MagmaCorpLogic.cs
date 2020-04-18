@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class MagmaCorpLogic : LevelManager
 {
+    bool reachedPortal;
+
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        
+        base.Start();
+        reachedPortal = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (reachedPortal)
+            EndGame(true);
+    }
+
+    public void ReachedPortal()
+    {
+        reachedPortal = true;
     }
 }

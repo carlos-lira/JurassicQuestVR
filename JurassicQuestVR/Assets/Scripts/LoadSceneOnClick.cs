@@ -6,16 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneOnClick : MonoBehaviour
 {
+
     public void LoadByIndex(int sceneIndex) 
     {
         EnableTimer();
         SceneManager.LoadScene(sceneIndex);
     }
 
+    public void LoadSelectedScene()
+    {
+        EnableTimer();
+        SceneManager.LoadScene(GetComponentInParent<DisplayQuest>().questId);
+    }
+
     public void RestartScene()
     {
         EnableTimer();
-        GameObject.Find("GameManager").GetComponent<GameManager>().Restart();
+        GameObject.Find("LevelManager").GetComponent<LevelManager>().Restart();
     }
 
     private void EnableTimer() 

@@ -84,8 +84,8 @@ namespace OculusSampleFramework
         {
             base.Start();
 
-            pauseMenu = FindObjectOfType<GameManager>().GetComponent<PauseMenu>();
-
+            //pauseMenu = FindObjectOfType<GameManager>().GetComponent<PauseMenu>();
+            pauseMenu = FindObjectOfType<LevelManager>().GetComponent<PauseMenu>();
             // Set up our max grab distance to be based on the player's max grab distance.
             // Adding a liberal margin of error here, because users can move away some from the 
             // OVRPlayerController, and also players have arms.
@@ -239,8 +239,11 @@ namespace OculusSampleFramework
                     grabbableRotation = Quaternion.RotateTowards(m_grabbedObj.transform.rotation, grabbableRotation, m_objectPullMaxRotationRate * Time.deltaTime);
                 }
             }
-            grabbedRigidbody.MovePosition(grabbablePosition);
-            grabbedRigidbody.MoveRotation(grabbableRotation);
+            if (grabbedRigidbody != null)
+            {
+                grabbedRigidbody.MovePosition(grabbablePosition);
+                grabbedRigidbody.MoveRotation(grabbableRotation);
+            }
         }
 
         static private DistanceGrabbable HitInfoToGrabbable(RaycastHit hitInfo)

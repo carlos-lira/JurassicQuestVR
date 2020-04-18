@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Enemy
   - Boundary
+  - Laura
   layers:
   - Default
   - TransparentFX

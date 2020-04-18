@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class EndTrigger : MonoBehaviour
 {
-
-    public GameManager gameManager;
-    private GameObject player;
+    LevelManager levelManager;
+    GameObject player;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == player.tag)
-            gameManager.EndGame(true);
+            levelManager.EndGame(true);
     }
 }

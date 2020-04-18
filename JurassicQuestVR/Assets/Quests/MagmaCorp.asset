@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602f202c1838dc642bab3f4cb096c2dd, type: 3}
+  m_Name: MagmaCorp
+  m_EditorClassIdentifier: 
+  questId: 1
+  title: MagmaCorp
+  history: Has conseguido infiltrarte en las instalaciones de MagmaCorp. La sala
+    en la que te encuentras tiene un fuerte sonido de estatica y esta altamente custodiada.
+  objectives:
+  - Evita ser detectado.
+  - Entra al portal.
+  image: {fileID: 21300000, guid: e484876f0cfbe8d46981ae0062b5e77f, type: 3}

@@ -30,18 +30,6 @@ public class SoldierPatrol : MonoBehaviour
     private float timeSpotted = 0f;
 
     private Animator anim;
-    private bool walk;
-    private bool inCombat;
-    private bool playerSpotted;
-    private bool shoot;
-    private bool run;
-    private bool hit;
-    private float turnAngle;
-    private bool turn;
-    private bool dead;
-
-    private bool playerDetected = false;
-    private bool playerEngageCombat = false;
 
 
     private void Start()
@@ -59,7 +47,6 @@ public class SoldierPatrol : MonoBehaviour
 
         if (!isStationary)
         {
-            walk = true;
             Vector3[] waypoints = new Vector3[pathHolder.childCount];
             for (int i = 0; i < waypoints.Length; i++)
             {
@@ -77,8 +64,6 @@ public class SoldierPatrol : MonoBehaviour
         {
             if (CanSeePlayer())
             {
-                playerDetected = true;
-
                 //Player Spotted
                 anim.SetBool("PlayerSpotted", true);
                 spotLight.color = Color.yellow;
@@ -86,8 +71,6 @@ public class SoldierPatrol : MonoBehaviour
             }
             else
             {
-                playerDetected = false;
-
                 //Back to patrolling
                 anim.SetBool("PlayerSpotted", false);
                 timeSpotted -= Time.deltaTime;
@@ -186,8 +169,7 @@ public class SoldierPatrol : MonoBehaviour
                 yield return StartCoroutine(TurnToFace(player.transform.position));
                 yield return new WaitForSeconds(3);
                 yield return StartCoroutine(TurnToFace(targetWaypoint));
-                //isWalking = true;
-                //isSpotted = false;
+
             }
         }
     }
@@ -201,8 +183,7 @@ public class SoldierPatrol : MonoBehaviour
         
         anim.SetFloat("TurnAngle", turningAngle);
         anim.SetBool("Turn", true);
-
-        
+ 
         while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.y, targetAngle)) > 0.05f)
         {
             float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetAngle, turnSpeed * Time.deltaTime);
@@ -254,9 +235,6 @@ public class SoldierPatrol : MonoBehaviour
 
             }
         }
-
-        //Debug.Log("Distance: " + Vector3.Distance(transform.position, playerPosition.position));
-        //Debug.Log("Angle: " + angle);
         //PLAYER NOT SPOTTED
         return false;
     }

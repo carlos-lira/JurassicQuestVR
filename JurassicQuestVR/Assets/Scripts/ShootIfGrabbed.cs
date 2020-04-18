@@ -70,10 +70,9 @@ public class ShootIfGrabbed : MonoBehaviour
     {
         foreach (var enemy in enemiesInRange)
         {
-
                 if (enemy != null)
-                    if (enemy.GetComponent<Enemy>() != null)
-                        enemy.GetComponent<Enemy>().EnterCombat();
+                    if (enemy.GetComponent<Soldier>() != null)
+                        enemy.GetComponent<Soldier>().EnterCombat();
 
 
         }

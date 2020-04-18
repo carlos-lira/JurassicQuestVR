@@ -127,6 +127,12 @@ public class OVRScreenFade : MonoBehaviour
 		StartCoroutine(Fade(1, 0));
 	}
 
+	//New function to finish a fadein
+	public void FadeInModified()
+	{
+		StartCoroutine(Fade(currentAlpha, 0));
+	}
+
 	public void FadeOutUpdated(float fadeTime)
 	{
 		StartCoroutine(FadeUpdated(0, 1, fadeTime));
@@ -194,7 +200,8 @@ public class OVRScreenFade : MonoBehaviour
 		float elapsedTime = 0.0f;
 		while (elapsedTime < fadeTime)
 		{
-			elapsedTime += Time.deltaTime;
+			//CHANGED TO UNSCALED
+			elapsedTime += Time.unscaledDeltaTime;
             currentAlpha = Mathf.Lerp(startAlpha, endAlpha, Mathf.Clamp01(elapsedTime / fadeTime));
             SetMaterialAlpha();
 			yield return new WaitForEndOfFrame();
@@ -206,7 +213,7 @@ public class OVRScreenFade : MonoBehaviour
 		float elapsedTime = 0.0f;
 		while (elapsedTime < fadeTime)
 		{
-			elapsedTime += Time.deltaTime;
+			elapsedTime += Time.unscaledDeltaTime;
 			currentAlpha = Mathf.Lerp(startAlpha, endAlpha, Mathf.Clamp01(elapsedTime / fadeTime));
 			SetMaterialAlpha();
 			yield return new WaitForEndOfFrame();

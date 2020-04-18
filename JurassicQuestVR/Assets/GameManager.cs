@@ -1,27 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+
 
 public class GameManager : MonoBehaviour
 {
+    public int playerProgress = 0;
 
-    public void EndGame(bool victory)
+    static GameManager instance;
+    private void Awake()
     {
-        if (victory)
+        if (instance != null)
         {
-            Debug.LogWarning("YOU WON!");
+            Destroy(gameObject);
         }
-        else 
+        else
         {
-            Debug.Log("YOU LOST!");
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
-    public void Restart() 
+    private void Start()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        playerProgress = PlayerPrefs.GetInt("PlayerProgress", playerProgress);
     }
 
+    public void SaveProgress(int completedLevelId)
+    {
+        if (completedLevelId > playerProgress)
+        {
+            playerProgress = completedLevelId;
+            PlayerPrefs.SetInt("PlayerProgress", playerProgress);
+        }
+    }
 
+    public void DeleteProgress()
+    {
+        PlayerPrefs.DeleteKey("PlayerProgress");
+        playerProgress = 0;
+    }
 }

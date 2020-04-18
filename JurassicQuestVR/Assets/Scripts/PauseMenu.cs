@@ -9,15 +9,25 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject mainPlayer;
     public GameObject menuPlayer;
+    public LevelManager levelManager;
+
+    public GameObject pausePanel;
+    public GameObject victoryPanel;
+    public GameObject defeatPanel;
 
     private void Awake()
     {
         gameIsPaused = false;
     }
 
+    private void Start()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+    }
+
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.Start))
+        if (OVRInput.GetDown(OVRInput.Button.Start) && !levelManager.IsGameOver())
         {
             if (gameIsPaused)
             {
@@ -32,8 +42,14 @@ public class PauseMenu : MonoBehaviour
 
     void Resume()
     {
+        pausePanel.SetActive(false);
         //HIDE UI
         EnableObjects();
+
+        //If the first fadein wasnt completed, we fade in again
+        if (mainPlayer.GetComponentInChildren<OVRScreenFade>(true).currentAlpha != 0)
+            //I created this new function on the Oculus SDK to complete a fade in
+            mainPlayer.GetComponentInChildren<OVRScreenFade>(true).FadeInModified();
 
         //REENABLE BEHAVIOURS
         Time.timeScale = 1f;
@@ -42,24 +58,40 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        pausePanel.SetActive(true);
         //SHOW UI
         DisableObjects();
-
         //DISABLE UNWANTED BEHAVIOURS
         Time.timeScale = 0f;
         gameIsPaused = true;
     }
 
-    void DisableObjects()
+    public void DisableObjects()
     {
         menuPlayer.SetActive(true);
         mainPlayer.SetActive(false);
     }
 
-    void EnableObjects()
+    public void EnableObjects()
     {
         menuPlayer.SetActive(false);
         mainPlayer.SetActive(true);
+    }
+
+    public void ShowVictoryScreen()
+    {
+        victoryPanel.SetActive(true);
+        //SHOW UI
+        DisableObjects();
+        menuPlayer.GetComponentInChildren<OVRScreenFade>(true).FadeIn();
+    }
+
+    public void ShowDefeatScreen()
+    {
+        defeatPanel.SetActive(true);
+        //SHOW UI
+        DisableObjects();
+        menuPlayer.GetComponentInChildren<OVRScreenFade>(true).FadeIn();
     }
 }
 

@@ -410,12 +410,10 @@ GameObject:
   - component: {fileID: 3475020286952086411}
   - component: {fileID: 3475020286952086420}
   - component: {fileID: 3475020286952086422}
-  - component: {fileID: 3475020286952086423}
   - component: {fileID: 3475020286952086416}
-  - component: {fileID: 3475020286952086417}
   - component: {fileID: 6244598681385562554}
   - component: {fileID: 1339916013954608639}
-  - component: {fileID: 2052403175270306929}
+  - component: {fileID: 5211355580108833155}
   m_Layer: 17
   m_Name: SoldierV3
   m_TagString: Enemy
@@ -611,25 +609,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3475020286952086423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475020286952086419}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b85ba23af7ab47429804b1c51ae6fe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewMask:
-    serializedVersion: 2
-    m_Bits: 60432
-  rangedEnemy: 1
-  attackSound: {fileID: 8300000, guid: ef91c9fac1e418144aca19280248bbef, type: 3}
-  accuracy: 0.5
-  damage: 1
 --- !u!195 &3475020286952086416
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -652,21 +631,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3475020286952086417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475020286952086419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c302396c08c0a14f8ed57dcaa580f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
-  enemyHealth: 3
-  inCombat: 0
 --- !u!135 &6244598681385562554
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -699,7 +663,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2052403175270306929
+--- !u!114 &5211355580108833155
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -708,24 +672,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 3475020286952086419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5755dee01908f404e9a545490bbe7138, type: 3}
+  m_Script: {fileID: 11500000, guid: bcc72dcc479144748bb8d4208b0e7909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
-  speed: 5
-  waitTime: 5
-  isStationary: 1
-  returnSameDirection: 1
-  turnSpeed: 90
-  pathHolder: {fileID: 0}
-  timeToLose: 1
-  combatEnabled: 1
-  spotLight: {fileID: 3475020287268464744}
-  viewDistance: 50
-  viewAngle: 160
+  health: 3
   viewMask:
     serializedVersion: 2
-    m_Bits: 52240
+    m_Bits: 60432
+  anim: {fileID: 0}
+  agent: {fileID: 0}
+  player: {fileID: 0}
+  combatSettings:
+    attackSound: {fileID: 8300000, guid: ef91c9fac1e418144aca19280248bbef, type: 3}
+    accuracy: 0.2
+    damage: 1
+    attackCooldown: 0.5
+  patrolSettings:
+    speed: 5
+    waitTime: 5
+    isStationary: 1
+    returnSameDirection: 1
+    turnSpeed: 180
+    soldierPath: {fileID: 0}
+    timeToSpotPlayer: 1
+  soldierSettings:
+    spotLight: {fileID: 3475020287268464744}
+    viewDistance: 50
+    viewAngle: 160
 --- !u!1 &3475020287052245616
 GameObject:
   m_ObjectHideFlags: 0

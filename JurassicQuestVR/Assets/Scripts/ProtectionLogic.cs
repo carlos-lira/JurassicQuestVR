@@ -26,6 +26,17 @@ public class ProtectionLogic : LevelManager
     public GameObject raptor;
 
 
+    public AudioClip lauraFirstDialogue;
+    bool firstDialoguePlayed = false;
+    public AudioClip lauraSecondDialogue;
+    bool secondDialoguePlayed = false;
+    public AudioClip raptorSound;
+    bool raptorSoundPlayed = false;
+
+    Laura laura;
+    float timer;
+    public GameObject raptorSoundSource;
+
     private void Awake()
     {
 
@@ -52,8 +63,12 @@ public class ProtectionLogic : LevelManager
     }
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
+        timer = 0;
+        laura = GameObject.FindGameObjectWithTag("Laura").GetComponent<Laura>();
+
         waveCountdown = timeBetweenWaves;
         spawnPoints = new Transform[spawnPointsHolder.childCount];
         for (int i = 0; i < spawnPoints.Length; i++)
@@ -65,6 +80,26 @@ public class ProtectionLogic : LevelManager
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+
+        if (timer >= 5f && !firstDialoguePlayed)
+        {
+            firstDialoguePlayed = true;
+            laura.PlaySound(lauraFirstDialogue);
+        }
+
+        if (timer >= 10f && !raptorSoundPlayed)
+        {
+            raptorSoundPlayed = true;
+            raptorSoundSource.GetComponent<AudioSource>().PlayOneShot(raptorSound); ;
+        }
+
+        if (timer >= 15f && !secondDialoguePlayed)
+        {
+            secondDialoguePlayed = true;
+            laura.PlaySound(lauraSecondDialogue);
+        }
+
         if (waveCountdown <= 0f)
         {
             //SPAWN
