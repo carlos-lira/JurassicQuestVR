@@ -14,12 +14,15 @@ public class LevelManager : MonoBehaviour
 
     OVRScreenFade fader;
     PauseMenu pauseMenu;
+    GameMusic gameMusic;
+
 
     bool hasWon = false;
     bool hasLost = false;
 
     public virtual void Start()
     {
+        gameMusic = GetComponent<GameMusic>();
         //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         pauseMenu = GetComponent<PauseMenu>();
         fader = pauseMenu.mainPlayer.GetComponentInChildren<OVRScreenFade>(true);
@@ -40,8 +43,6 @@ public class LevelManager : MonoBehaviour
         {
             hasWon = true;
             StartCoroutine(Win());
-            //Save progress
-           if (GameObject.Find("GameManager").GetComponent<GameManager>() != null) GameObject.Find("GameManager").GetComponent<GameManager>().SaveProgress(SceneManager.GetActiveScene().buildIndex);
         }
         else if (!victory && !IsGameOver())
         {
@@ -59,9 +60,12 @@ public class LevelManager : MonoBehaviour
     IEnumerator Win()
     {
         Debug.Log("YOU WON!");
+        //Save progress
+        if (GameObject.Find("GameManager").GetComponent<GameManager>() != null) GameObject.Find("GameManager").GetComponent<GameManager>().SaveProgress(SceneManager.GetActiveScene().buildIndex);
 
         //FadeOut
         Time.timeScale = 0.5f;
+        gameMusic.PlayVictorySong();
 
         fader.FadeOut();
         yield return new WaitForSeconds(2f);
@@ -77,6 +81,7 @@ public class LevelManager : MonoBehaviour
 
         //FadeOut
         Time.timeScale = 0.5f;
+        gameMusic.PlayDefeatSong();
 
         fader.FadeOut();
         yield return new WaitForSeconds(2f);
