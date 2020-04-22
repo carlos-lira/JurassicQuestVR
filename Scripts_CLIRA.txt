@@ -1,0 +1,58 @@
+SCRIPTS (2020-04-18)
+
+Los scripts que no aparecen aqui o no estan siendo utilizados o no son hechos por mi.
+Para mejor visibilidad, los he agrupado por categorias
+
+Player:
+Player (Controla la vida del jugador)
+FadeOnCollision (Detecta colisiones del jugador para que en caso de caminar contra una de las capas con las que colisiona, le ponga el headset en negro)
+VibrationManager (Facilita el acceso a la vibracion de los controles)
+
+Laura:
+Laura (Facilita las funciones para controlar a Laura desde el level manager)
+
+Enemies:
+Enemy (Superclase con los atributos comunes de los enemigos)
+Soldier (Hereda de Enemy: Este es el script que me tiene mas orgulloso, controla la logica de patrulla, deteccion y ataque del soldado. La funcion FollowPath se ha hecho siguiendo un tutorial)
+Raptor (Hereda de Raptor: Este maneja la logica del raptor)
+
+Weapons:
+ShootIfGrabbed (Hecha siguiendo un tutorial, permite disparar la pistola cuando se coge)
+ProjectileDestroy (Distruye las balas tras impactar)
+EnemyImpact (Hace que las balas resten vida a los enemigos al colisionar)
+
+
+GameManager (GENERAL)
+GameManager (Singleton encargado de monitorizar el progreso del juego)
+
+Levels (GENERAL):
+LevelManager (Superclase con la logica compartida por todos los niveles)
+PauseMenu (Compartido por todos los niveles, se encarga de pausar y reanudar la partida, ademas de mostrar las pantallas de victoria y derrota)
+DefeatReason (Clase que en funcion del nivel muestra un mensaje de derrota u otro)
+AudioSourceTimeManagement (Silencia los AudioSource cuando se pausa el juego y reactiva cuando se reanuda)
+
+NIVEL1(MagmaCorp)
+MagmaCorpLogic (Clase que hereda de LevelManager e implementa la logica del primer nivel)
+EndTrigger (Script asociado al portal que le "chiva" al levelManager cuando el usuario ha llegado a el)
+
+NIVEL2(TeamAlpha)
+TeamAlphaLogic (Clase que hereda de LevelManager e implementa la logica del segundo nivel)
+
+NIVEL3(Proteccion)
+Protection (Clase que hereda de LevelManager e implementa la logica del tercer nivel)
+
+
+UI
+Quest (Clase que me permite crear misiones)
+DisplayQuest (Muestra una quest u otra en funcion de la que se clique)
+UpdateMainCanvas (Actualiza las misiones a mostrar en el canvas - las actualiza segun el progreso del jugador)
+OnClickLoad (Carga una escena al clicar)
+QuitOnClick (Cierra el juego al clicar)
+
+Animator: (Reinician el valor de una variable del animator al salir o entrar a una la animacion, por ejemplo "Shoot" debe volver a falso cuando termine un disparo)
+AnimatorActivateBoolAtEntrance
+AnimatorResetBoolAtEnd
+AnimatorResetBoolAtEntrance
+AnimatorResetFloatAtEnd
+AnimatorResetIntAtEnd
+
