@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602f202c1838dc642bab3f4cb096c2dd, type: 3}
   m_Name: TeamAlpha
   m_EditorClassIdentifier: 
-  questId: 2
+  questId: 3
   title: Equipo Alpha
   history: Has conseguido infiltrarte a traves del portal de MagmaCorp. El portal
     te ha llevado a una selva la cual no reconoces. Deberas investigar e intentar

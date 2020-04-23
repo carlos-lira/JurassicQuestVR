@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     public virtual void Start()
     {
         gameMusic = GetComponent<GameMusic>();
-        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         pauseMenu = GetComponent<PauseMenu>();
         fader = pauseMenu.mainPlayer.GetComponentInChildren<OVRScreenFade>(true);
         hasWon = false;
@@ -54,14 +54,19 @@ public class LevelManager : MonoBehaviour
     public void Restart()
     {
         StopAllCoroutines();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.RestartMission();
+        //SceneManager.LoadSceneAsync(GetCurrentScene(), LoadSceneMode.Additive);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+
 
     IEnumerator Win()
     {
         Debug.Log("YOU WON!");
         //Save progress
-        if (GameObject.Find("GameManager").GetComponent<GameManager>() != null) GameObject.Find("GameManager").GetComponent<GameManager>().SaveProgress(SceneManager.GetActiveScene().buildIndex);
+        if (gameManager != null)
+            gameManager.SaveProgress();
 
         //FadeOut
         Time.timeScale = 0.5f;
@@ -96,6 +101,20 @@ public class LevelManager : MonoBehaviour
         return (hasWon || hasLost);
     }
 
+    private int GetCurrentScene()
+    {
+        int currentScene = 0;
+        int countLoaded = SceneManager.sceneCount;
+        Scene[] loadedScenes = new Scene[countLoaded];
+
+        for (int i = 0; i < countLoaded; i++)
+        {
+            if (SceneManager.GetSceneAt(i).buildIndex > currentScene)
+                currentScene = SceneManager.GetSceneAt(i).buildIndex;
+        }
+
+        return currentScene;
+    }
 
 }
 

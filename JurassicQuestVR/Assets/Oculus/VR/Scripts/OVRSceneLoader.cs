@@ -52,6 +52,7 @@ public class OVRSceneLoader : MonoBehaviour
 
 	void Start()
 	{
+
 		string applicationPath = Path.Combine(externalStoragePath, Application.identifier);
 		scenePath = Path.Combine(applicationPath, "cache/scenes");
 		sceneLoadDataPath = Path.Combine(scenePath, sceneLoadDataName);

@@ -8,7 +8,7 @@ public class buttonFX : MonoBehaviour
     AudioClip hoverSound;
     AudioClip clickSound;
     AudioClip backSound;
-    GameManager gameManager;
+    public GameManager gameManager;
     SoundSettings soundSettings;
 
     void Start()

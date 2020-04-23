@@ -6,11 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneOnClick : MonoBehaviour
 {
-
+    public GameManagerLoader gml;
     public void LoadByIndex(int sceneIndex) 
     {
         EnableTimer();
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void LoadByEnum(SceneIndexes sceneIndex)
+    {
+        EnableTimer();
+        SceneManager.LoadScene((int)sceneIndex);
+    }
+
+    public void TestLoadScene()
+    {
+        EnableTimer();
+        gml.LoadMission(GetComponentInParent<DisplayQuest>().questId);
     }
 
     public void LoadSelectedScene()
@@ -29,4 +41,5 @@ public class LoadSceneOnClick : MonoBehaviour
     {
         Time.timeScale = 1f;
     }
+
 }
