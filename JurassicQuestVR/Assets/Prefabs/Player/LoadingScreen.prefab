@@ -442,9 +442,9 @@ GameObject:
   - component: {fileID: 2135371161791168637}
   - component: {fileID: 2135371161791168610}
   - component: {fileID: 2135371161791168611}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: OVRPlayerController
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1218,7 +1218,7 @@ GameObject:
   - component: {fileID: 2135371161970284363}
   - component: {fileID: 2135371161970284360}
   - component: {fileID: 2135371161970284361}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: DistanceGrabHandRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1316,7 +1316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2135371161998692306}
   - component: {fileID: 2135371161998692333}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GrabVolumeBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1892,7 +1892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2135371162186655156}
   - component: {fileID: 2135371162186655159}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GrabVolumeSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2437,7 +2437,7 @@ GameObject:
   - component: {fileID: 2135371162456656055}
   - component: {fileID: 2135371162456656052}
   - component: {fileID: 2135371162456656053}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -2732,7 +2732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2135371162533797630}
   - component: {fileID: 2135371162533797625}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: GrabVolumeCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2776,7 +2776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2135371162545144086}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: gripTrans
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3605,7 +3605,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2135371162889342107}
   - component: {fileID: 2135371162889342110}
-  - component: {fileID: 2135371162889342104}
   - component: {fileID: 2135371162889342105}
   m_Layer: 0
   m_Name: OVRCameraRig
@@ -3644,63 +3643,6 @@ MonoBehaviour:
   usePerEyeCameras: 0
   useFixedUpdateForTracking: 0
   disableEyeAnchorCameras: 0
---- !u!114 &2135371162889342104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2135371162889342111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e933e81d3c20c74ea6fdc708a67e3a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  queueAhead: 1
-  useRecommendedMSAALevel: 1
-  _monoscopic: 0
-  enableAdaptiveResolution: 0
-  minRenderScale: 0.7
-  maxRenderScale: 1
-  _headPoseRelativeOffsetRotation: {x: 0, y: 0, z: 0}
-  _headPoseRelativeOffsetTranslation: {x: 0, y: 0, z: 0}
-  profilerTcpPort: 32419
-  expandMixedRealityCapturePropertySheet: 0
-  enableMixedReality: 0
-  compositionMethod: 0
-  extraHiddenLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  externalCompositionBackdropColorRift: {r: 0, g: 1, b: 0, a: 1}
-  externalCompositionBackdropColorQuest: {r: 0, g: 0, b: 0, a: 0}
-  capturingCameraDevice: 0
-  flipCameraFrameHorizontally: 0
-  flipCameraFrameVertically: 0
-  handPoseStateLatency: 0
-  sandwichCompositionRenderLatency: 0
-  sandwichCompositionBufferedFrames: 8
-  chromaKeyColor: {r: 0, g: 1, b: 0, a: 1}
-  chromaKeySimilarity: 0.6
-  chromaKeySmoothRange: 0.03
-  chromaKeySpillRange: 0.06
-  useDynamicLighting: 0
-  depthQuality: 1
-  dynamicLightingSmoothFactor: 8
-  dynamicLightingDepthVariationClampingValue: 0.001
-  virtualGreenScreenType: 0
-  virtualGreenScreenTopY: 10
-  virtualGreenScreenBottomY: -10
-  virtualGreenScreenApplyDepthCulling: 0
-  virtualGreenScreenDepthTolerance: 0.2
-  mrcActivationMode: 0
-  _trackingOriginType: 0
-  usePositionTracking: 1
-  useRotationTracking: 1
-  useIPDInPositionTracking: 1
-  resetTrackerOnLoad: 0
-  AllowRecenter: 1
-  _reorientHMDOnControllerRecenter: 1
-  LateControllerUpdate: 1
 --- !u!114 &2135371162889342105
 MonoBehaviour:
   m_ObjectHideFlags: 0

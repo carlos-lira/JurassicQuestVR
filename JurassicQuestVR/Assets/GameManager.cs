@@ -13,34 +13,24 @@ public class GameManager : MonoBehaviour
     public int playerProgress = 0;
     public SoundSettings soundSettings;
     public GameObject loadingScreen;
+    public GameObject pauseMenu;
 
     public AudioClip victorySong;
     public AudioClip defeatSong;
     public ButtonSounds buttonSounds;
 
+    int previousScene = 0;
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
     static GameManager instance;
     private void Awake()
     {
-        /*
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        */
         instance = this;
         playerProgress = PlayerPrefs.GetInt("PlayerProgress", playerProgress);
         GetSoundSettings();
 
         if (!debugMode)
         {
-            SceneManager.LoadSceneAsync((int)SceneIndexes.MAIN_MENU, LoadSceneMode.Additive);
-            //FirstGameLoad();
+            FirstGameLoad();
         }
     }
 
@@ -50,9 +40,8 @@ public class GameManager : MonoBehaviour
 
     public void FirstGameLoad()
     {
-        loadingScreen.SetActive(true);
         scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.MAIN_MENU, LoadSceneMode.Additive));
-        StartCoroutine(GetSceneLoadProgress());
+        StartCoroutine(GetSceneLoadProgress((int)SceneIndexes.MAIN_MENU));
     }
 
     public void LoadMission(int missionId)
@@ -62,7 +51,7 @@ public class GameManager : MonoBehaviour
         scenesLoading.Add(SceneManager.UnloadSceneAsync((int)SceneIndexes.MAIN_MENU));
         scenesLoading.Add(SceneManager.LoadSceneAsync(missionId, LoadSceneMode.Additive));
 
-        StartCoroutine(GetSceneLoadProgress());
+        StartCoroutine(GetSceneLoadProgress(missionId));
     }
 
     public void GoToMainMenu()
@@ -73,7 +62,7 @@ public class GameManager : MonoBehaviour
         scenesLoading.Add(SceneManager.UnloadSceneAsync(currentScene));
         scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.MAIN_MENU, LoadSceneMode.Additive));
 
-        StartCoroutine(GetSceneLoadProgress());
+        StartCoroutine(GetSceneLoadProgress((int)SceneIndexes.MAIN_MENU));
     }
 
     public void GameRestart()
@@ -81,7 +70,7 @@ public class GameManager : MonoBehaviour
         loadingScreen.SetActive(true);
         scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.MANAGER, LoadSceneMode.Single));
 
-        StartCoroutine(GetSceneLoadProgress());
+        StartCoroutine(GetSceneLoadProgress((int)SceneIndexes.MANAGER));
     }
 
 
@@ -93,27 +82,34 @@ public class GameManager : MonoBehaviour
         scenesLoading.Add(SceneManager.UnloadSceneAsync(currentScene));
         scenesLoading.Add(SceneManager.LoadSceneAsync(currentScene, LoadSceneMode.Additive));
 
-        StartCoroutine(GetSceneLoadProgress());
+        StartCoroutine(GetSceneLoadProgress(currentScene));
     }
 
-    public IEnumerator GetSceneLoadProgress()
+    public IEnumerator GetSceneLoadProgress(int newScene)
     {
+
+        previousScene = GetCurrentScene();
+
+        float loadingDuration = 0f;
         foreach (var scene in scenesLoading)
         {
             while (!scene.isDone)
-            { 
+            {
+                loadingDuration += Time.unscaledDeltaTime;
                 yield return null;
             }
         }
 
         scenesLoading.Clear();
+        Time.timeScale = 1f;
         loadingScreen.SetActive(false);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(newScene));
     }
 
     void GetSoundSettings()
     {
         soundSettings = new SoundSettings();
-        soundSettings.musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        soundSettings.musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
 
         int musicMuted = PlayerPrefs.GetInt("MusicMuted", 0);
         if (musicMuted == 0)
@@ -136,7 +132,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private int GetCurrentScene()
+    public int GetPreviousScene()
+    {
+        return previousScene;
+    }
+
+    public int GetCurrentScene()
     {
         int currentScene = 0;
         int countLoaded = SceneManager.sceneCount;
@@ -149,6 +150,13 @@ public class GameManager : MonoBehaviour
         }
 
         return currentScene;
+    }
+
+    public void SwapPlayers()
+    {
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = true;
+        loadingScreen.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void DeleteProgress()

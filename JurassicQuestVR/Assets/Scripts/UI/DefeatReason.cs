@@ -7,23 +7,31 @@ using UnityEngine.UI;
 public class DefeatReason : MonoBehaviour
 {
 
+    GameManager gameManager;
     void Start()
     {
-        switch (SceneManager.GetActiveScene().buildIndex)
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.GetCurrentScene();
+
+        string message;
+
+        switch (gameManager.GetCurrentScene())
         {
-            case 1:
-                GetComponent<Text>().text = "Has sido detectado";
+            case (int) SceneIndexes.MAGMACORP:
+                message = "Has sido detectado";
                 break;
-            case 2:
-                GetComponent<Text>().text = "Has muerto";
+            case (int) SceneIndexes.TEAM_ALPHA:
+                message = "Has muerto";
                 break;
-            case 3:
-                GetComponent<Text>().text = "Has muerto";
+            case (int) SceneIndexes.PROTECTION:
+                message = "Has muerto";
                 break;
             default:
-                GetComponent<Text>().text = "Has perdido";
+                message = "Has perdido";
                 break;
         }
+
+        GetComponent<Text>().text = message;
     }
 
 

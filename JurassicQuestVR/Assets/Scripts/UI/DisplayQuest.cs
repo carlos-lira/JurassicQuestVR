@@ -28,7 +28,7 @@ public class DisplayQuest : MonoBehaviour
         }
 
         questId = quest.questId;
-        title.text = quest.title;
+        title.text = quest.title.ToUpper();
         history.text = quest.history;
         objectives.text = tempObjectives;
         image.sprite = quest.image;

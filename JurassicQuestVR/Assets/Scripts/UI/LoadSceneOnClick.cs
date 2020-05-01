@@ -19,7 +19,7 @@ public class LoadSceneOnClick : MonoBehaviour
         SceneManager.LoadScene((int)sceneIndex);
     }
 
-    public void TestLoadScene()
+    public void LoadMission()
     {
         EnableTimer();
         gml.LoadMission(GetComponentInParent<DisplayQuest>().questId);

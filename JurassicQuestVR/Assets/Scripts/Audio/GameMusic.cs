@@ -37,7 +37,7 @@ public class GameMusic : MonoBehaviour
     void UpdateAudioSettings()
     {
         audioSource.mute = soundSettings.muted;
-        audioSource.volume = soundSettings.musicVolume * soundSettings.masterVolumne;
+        audioSource.volume = soundSettings.musicVolume * soundSettings.masterVolumne * 0.5f;
     }
 
     public void PlayVictorySong()

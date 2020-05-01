@@ -204,7 +204,7 @@ public class OVROverlay : MonoBehaviour
 	internal const int maxInstances = 15;
 	public static OVROverlay[] instances = new OVROverlay[maxInstances];
 
-#endregion
+	#endregion
 
 	private static Material tex2DMaterial;
 	private static Material cubeMaterial;
@@ -781,6 +781,7 @@ public class OVROverlay : MonoBehaviour
 
 	bool ComputeSubmit(ref OVRPose pose, ref Vector3 scale, ref bool overlay, ref bool headLocked)
 	{
+
 		Camera headCamera = Camera.main;
 
 		overlay = (currentOverlayType == OverlayType.Overlay);

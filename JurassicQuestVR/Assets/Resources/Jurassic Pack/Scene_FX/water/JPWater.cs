@@ -42,6 +42,7 @@ public class JPWater : MonoBehaviour
   void Start()
   {
     cam=Camera.main;
+	//cam = GameObject.Find()
     defaultLightDir=DirectionalLight.transform.forward;
     sunflare=cam.GetComponent<FlareLayer>();
   }
