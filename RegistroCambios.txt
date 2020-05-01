@@ -1,0 +1,49 @@
+Cambios respecto a la PEC2:
+
+1- Jerarquia de escenas
+El juego ahora carga sobre una escena 0 persistente que lleva el GameManager y el LoadingScreen.
+
+2- GameManager
+Permite cargar, guardar y eliminar progreso.
+Permite cambiar el volumen de la musica o silenciarla. El volumen y la condicion de mute tambien son guardadas y cargadas.
+Manipula el cambio entre escenas y muestra la pantalla de carga mientras se esta transicionando
+
+3- MenuPrincipal
+He rehecho todo el canvas del menu principal. He conservado la estética, pero ahora utiliza escalas y proporciones razonables 
+que facilitan mucho la incorporacion de imagenes y botones. La version anterior tenia unas escalas en X e Y que distorsionaban
+cualquier imagen que se pusiera e incluso el mismo Sprite de la UI.
+(El MenuPausa comparte Prefab con el canvas principal, por lo que este tambien ha sido mejorado)
+
+3.1. Opciones
+Se ha substituido el menu de "Controles" por "Opciones". Opciones muestra 3 pestañas, una con los controles, otra el audio y
+otra el reinicio de progreso.
+
+3.2. SFX
+Los botones tienen ahora un sonido de hover, click y atras.
+
+4- Niveles
+4.1. MagmaCorp
+Se ha añadido el modelo del portal y se le ha añadido un sonido de estática
+Se ha eliminado la luz ambiente y se han añadido luces rojas muy tenues. Esto hace que las luces de los guardias tengan mucho
+mas impacto y le da mas intensidad a la jugabilidad.
+
+4.2. TeamAlpha
+Se ha hecho una suavizacion del terreno en las zonas principales donde camina el jugador.
+Se han añadido las voces de Laura
+Se han añadido las animaciones de Laura
+El control de Laura se realiza desde el LevelManager en vez de un script propio de Laura para el nivel en cuestion.
+Se ha creado el script Laura que le permite al LevelManager utilizar a Laura (hablar, correr, reproducir audio,...)
+
+4.3. Proteccion
+Se han añadido las animaciones de los raptores
+Los raptores ahora hacen un rugido al estar a 50metros del jugador (era demasiado frustrante cuando venian por detras)
+Se ha aumentado la velocidad de los raptores y se ha añadido una animacion de salto/ataque cuando estan a 6metros del jugador.
+Se han modificado los raptores para que hagan el daño al final de la animacion en vez de al principio
+Se han incluido dos animaciones de ataque distintas que el raptor va utilizando (random una u otra)
+Se han añadido las voces de Laura
+Se han añadido 3 dialogos adicionales de Laura indicando el progreso de la prueba (50%, 75% y 100%)
+
+
+
+
+ 
