@@ -1,6 +1,6 @@
-SCRIPTS (2020-04-18)
+SCRIPTS (2020-04-30)
 
-Los scripts que no aparecen aqui o no estan siendo utilizados o no son hechos por mi.
+Los scripts que no aparecen aqui o no estan siendo utilizados, o son para testeo, o no son hechos por mi.
 Para mejor visibilidad, los he agrupado por categorias
 
 Player:
@@ -24,6 +24,8 @@ EnemyImpact (Hace que las balas resten vida a los enemigos al colisionar)
 
 GameManager (GENERAL)
 GameManager (Singleton encargado de monitorizar el progreso del juego)
+NUEVO -> El game manager ahora maneja las opciones de audio y de mostrar la pantalla de carga entre escenas. 
+Adicionalmente, ahora el GameManager se encarga de cargar, guardar y eliminar el progreso. Tambien se encarga de guardar las preferencias de sonido para la musica.
 
 Levels (GENERAL):
 LevelManager (Superclase con la logica compartida por todos los niveles)
@@ -39,7 +41,7 @@ NIVEL2(TeamAlpha)
 TeamAlphaLogic (Clase que hereda de LevelManager e implementa la logica del segundo nivel)
 
 NIVEL3(Proteccion)
-Protection (Clase que hereda de LevelManager e implementa la logica del tercer nivel)
+ProtectionLogic (Clase que hereda de LevelManager e implementa la logica del tercer nivel)
 
 
 UI
@@ -55,4 +57,8 @@ AnimatorResetBoolAtEnd
 AnimatorResetBoolAtEntrance
 AnimatorResetFloatAtEnd
 AnimatorResetIntAtEnd
+
+Audio (NUEVO)
+SoundSettings (Clase utilizada para manejar las opciones de sonido)
+GameMusic (Clase que utiliza el GameManager para reproducir la musica correspondiente al nivel y eventos de victory y defeat.)
 

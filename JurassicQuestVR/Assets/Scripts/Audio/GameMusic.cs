@@ -37,6 +37,7 @@ public class GameMusic : MonoBehaviour
     void UpdateAudioSettings()
     {
         audioSource.mute = soundSettings.muted;
+        //Music at volume 1 is too disruptive for gameplay. This will reduce it to 50% of the selected value.
         audioSource.volume = soundSettings.musicVolume * soundSettings.masterVolumne * 0.5f;
     }
 
