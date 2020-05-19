@@ -5,7 +5,7 @@ public enum WaterQuality { High = 2, Medium = 1, Low = 0, }
 [ExecuteInEditMode]
 public class JPWater : MonoBehaviour
 {
-  Camera cam=null;
+	public Camera cam=null;
 	public Material WaterMaterial;
 	[SerializeField] WaterQuality WaterQuality = WaterQuality.High;
 	[SerializeField] bool EdgeBlend = true;
@@ -41,7 +41,7 @@ public class JPWater : MonoBehaviour
 
   void Start()
   {
-    cam=Camera.main;
+    //cam=Camera.main;
 	//cam = GameObject.Find()
     defaultLightDir=DirectionalLight.transform.forward;
     sunflare=cam.GetComponent<FlareLayer>();

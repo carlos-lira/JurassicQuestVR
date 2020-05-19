@@ -43,6 +43,7 @@ public class ProtectionLogic : LevelManager
     float timer;
     public GameObject raptorSoundSource;
 
+  
     private void Awake()
     {
 
@@ -133,14 +134,21 @@ public class ProtectionLogic : LevelManager
                 {
                     fifthDialoguePlayed = true;
                     laura.PlaySound(lauraFifthDialogue);
+                    StartCoroutine(FinishLevel());
                 }
-                EndGame(true);
             }
         }
         else
         {
             waveCountdown -= Time.deltaTime;
         }
+    }
+ 
+    //Adding small delay after Lauras last dialogue
+    IEnumerator FinishLevel()
+    {
+        yield return new WaitForSeconds(2);
+        EndGame(true);
     }
 
     IEnumerator SpawnWave(Wave wave) 

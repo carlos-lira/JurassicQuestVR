@@ -38,7 +38,8 @@ public class GameMusic : MonoBehaviour
     {
         audioSource.mute = soundSettings.muted;
         //Music at volume 1 is too disruptive for gameplay. This will reduce it to 50% of the selected value.
-        audioSource.volume = soundSettings.musicVolume * soundSettings.masterVolumne * 0.5f;
+        //Changed back to 1 with the new music
+        audioSource.volume = soundSettings.musicVolume * soundSettings.masterVolumne * 1f;
     }
 
     public void PlayVictorySong()

@@ -40,7 +40,9 @@ public class GameManager : MonoBehaviour
 
     public void FirstGameLoad()
     {
+        loadingScreen.SetActive(true);
         scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.MAIN_MENU, LoadSceneMode.Additive));
+        //StartCoroutine(FirstSceneLoadProgress((int)SceneIndexes.MAIN_MENU));
         StartCoroutine(GetSceneLoadProgress((int)SceneIndexes.MAIN_MENU));
     }
 
@@ -79,11 +81,67 @@ public class GameManager : MonoBehaviour
         int currentScene = GetCurrentScene();
 
         loadingScreen.SetActive(true);
+        
         scenesLoading.Add(SceneManager.UnloadSceneAsync(currentScene));
         scenesLoading.Add(SceneManager.LoadSceneAsync(currentScene, LoadSceneMode.Additive));
 
         StartCoroutine(GetSceneLoadProgress(currentScene));
+        
+        //StartCoroutine(ReloadScene());
     }
+
+    IEnumerator ReloadScene()
+    {
+        int currentScene = GetCurrentScene();
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
+        scenesLoading.Add(SceneManager.UnloadSceneAsync(currentScene));
+        foreach (var scene in scenesLoading)
+        {
+            while (!scene.isDone)
+            {
+                yield return null;
+            }
+        }
+
+        scenesLoading.Clear();
+        scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.MAIN_MENU, LoadSceneMode.Additive));
+        foreach (var scene in scenesLoading)
+        {
+            while (!scene.isDone)
+            {
+                yield return null;
+            }
+        }
+
+        scenesLoading.Clear();
+        scenesLoading.Add(SceneManager.UnloadSceneAsync((int)SceneIndexes.MAIN_MENU));
+        foreach (var scene in scenesLoading)
+        {
+            while (!scene.isDone)
+            {
+                yield return null;
+            }
+        }
+
+        Debug.LogWarning("AQUIIIIIIIIIIIIIIIIIIIIIIIIII");
+        Debug.LogWarning(currentScene);
+
+        scenesLoading.Clear();
+        scenesLoading.Add(SceneManager.LoadSceneAsync(currentScene, LoadSceneMode.Additive));
+        foreach (var scene in scenesLoading)
+        {
+            while (!scene.isDone)
+            {
+                yield return null;
+            }
+        }
+
+        scenesLoading.Clear();
+        Time.timeScale = 1f;
+        loadingScreen.SetActive(false);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(currentScene));
+    }
+
 
     public IEnumerator GetSceneLoadProgress(int newScene)
     {
@@ -104,6 +162,31 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         loadingScreen.SetActive(false);
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(newScene));
+    }
+
+    public IEnumerator FirstSceneLoadProgress(int newScene)
+    {
+
+        previousScene = GetCurrentScene();
+
+        float loadingDuration = 0f;
+        foreach (var scene in scenesLoading)
+        {
+            while (!scene.isDone)
+            {
+                loadingDuration += Time.unscaledDeltaTime;
+                yield return null;
+            }
+        }
+
+        scenesLoading.Clear();
+        Time.timeScale = 1f;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(newScene));
+
+        //New
+        scenesLoading.Add(SceneManager.UnloadSceneAsync(newScene));
+        scenesLoading.Add(SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive));
+        StartCoroutine(GetSceneLoadProgress(newScene));
     }
 
     void GetSoundSettings()

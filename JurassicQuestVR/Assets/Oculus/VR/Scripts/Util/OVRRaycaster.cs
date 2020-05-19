@@ -27,9 +27,12 @@ using UnityEngine.Serialization;
 /// Extension of GraphicRaycaster to support ray casting with world space rays instead of just screen-space
 /// pointer positions
 /// </summary>
+/// 
+
 [RequireComponent(typeof(Canvas))]
 public class OVRRaycaster : GraphicRaycaster, IPointerEnterHandler
 {
+
     [Tooltip("A world space pointer for this canvas")]
     public GameObject pointer;
 

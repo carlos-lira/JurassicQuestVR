@@ -99,14 +99,20 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseAudioSources()
     {
-        foreach (var source in audioSources)
-            source.Pause();
+        if (audioSources != null)
+        {
+            foreach (var source in audioSources)
+                source.Pause();
+        }
     }
 
     public void UnpauseAudioSources()
     {
-        foreach (var source in audioSources)
-            source.UnPause();
+        if (audioSources != null)
+        {
+            foreach (var source in audioSources)
+                source.UnPause();
+        }
     }
 
     public bool GameIsPaused()

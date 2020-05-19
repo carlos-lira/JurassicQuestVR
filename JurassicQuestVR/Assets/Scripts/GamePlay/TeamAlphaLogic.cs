@@ -13,6 +13,7 @@ public class TeamAlphaLogic : LevelManager
     public Phase3 phase3;
     public Phase4 phase4;
 
+    
     public override void Start()
     {
         base.Start();
@@ -42,7 +43,7 @@ public class TeamAlphaLogic : LevelManager
                 break;
         }
     }
-
+    
     void Phase1Logic()
     {
         //Check if the enemies are dead and player is near laura
