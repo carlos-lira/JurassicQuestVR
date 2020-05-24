@@ -2,6 +2,7 @@ Cambios respecto a la PEC2:
 
 1- Jerarquia de escenas
 El juego ahora carga sobre una escena 0 persistente que lleva el GameManager y el LoadingScreen.
+Se ha substituido el loadingScreen hall por un OVROverlay para optimizar recursos.
 
 2- GameManager
 Permite cargar, guardar y eliminar progreso.
@@ -21,6 +22,9 @@ otra el reinicio de progreso.
 3.2. SFX
 Los botones tienen ahora un sonido de hover, click y atras.
 
+3.3. Canvas
+Se ha rehecho completamente el canvas principal para poder insertar imagenes sin producir distorsion
+
 4- Niveles
 4.1. MagmaCorp
 Se ha añadido el modelo del portal y se le ha añadido un sonido de estática
@@ -36,12 +40,22 @@ Se ha creado el script Laura que le permite al LevelManager utilizar a Laura (ha
 
 4.3. Proteccion
 Se han añadido las animaciones de los raptores
-Los raptores ahora hacen un rugido al estar a 50metros del jugador (era demasiado frustrante cuando venian por detras)
+Los raptores ahora hacen un rugido al estar a 100metros del jugador (era demasiado frustrante cuando venian por detras)
 Se ha aumentado la velocidad de los raptores y se ha añadido una animacion de salto/ataque cuando estan a 6metros del jugador.
 Se han modificado los raptores para que hagan el daño al final de la animacion en vez de al principio
 Se han incluido dos animaciones de ataque distintas que el raptor va utilizando (random una u otra)
 Se han añadido las voces de Laura
 Se han añadido 3 dialogos adicionales de Laura indicando el progreso de la prueba (50%, 75% y 100%)
+
+5. Musica
+Se ha añadido música propia de JurassicQuestVR
+
+6. Pausa y sonido
+Los audioSources correspondientes a dialogos ahora se pausan correctamente cuando se pausa el juego.
+
+7. Bug fixes
+7.1. Se ha arreglado un bug que tras hacer el "build" impedia al usuario interactuar con la UI.
+
 
 
 
