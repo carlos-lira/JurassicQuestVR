@@ -1,3 +1,10 @@
+CAMBIOS DE CARA A LA ENTREGA FINAL:
+
+1- Ajustada la posicion de la pistola
+2- Añadida opcion para saltar dialogo en TeamAlpha
+3- Optimizada la iluminación y poligonos en MagmaCorp para mejorar rendimiento en el build.
+
+
 Cambios respecto a la PEC2:
 
 1- Jerarquia de escenas
