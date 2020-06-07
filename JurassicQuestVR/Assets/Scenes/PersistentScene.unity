@@ -323,6 +323,80 @@ MonoBehaviour:
   AllowRecenter: 1
   _reorientHMDOnControllerRecenter: 1
   LateControllerUpdate: 1
+--- !u!1001 &2049240779
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.0111084
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.24725766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.767155
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485475, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485477, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_Name
+      value: VibrationManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277109663622485477, guid: d6181317c0ecc8f46b9c5a2ff16e4c29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d6181317c0ecc8f46b9c5a2ff16e4c29, type: 3}
 --- !u!136 &2135371161641458060
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -51,6 +51,7 @@ public class Laura : MonoBehaviour
     }
     public void StopTalking()
     {
+        GetComponent<AudioSource>().Stop();
         isTalking = false;
         anim.SetBool("Talk", false);
     }
@@ -115,6 +116,11 @@ public class Laura : MonoBehaviour
         distance.y = 0;
 
         return Mathf.Abs(distance.magnitude);
+    }
+
+    public void Teleport(Vector3 position)
+    {
+        agent.Warp(position);
     }
 
     public bool IsTalking()

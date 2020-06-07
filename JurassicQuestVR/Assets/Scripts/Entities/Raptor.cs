@@ -90,12 +90,12 @@ public class Raptor : Enemy
     {
         if (Random.Range(0f, 1f) <= combatSettings.accuracy)
         {
-            Debug.Log("hit");
+            //Debug.Log("hit");
             player.GetComponent<Player>().PlayerHit(combatSettings.damage);
         }
         else
         {
-            Debug.Log("miss");
+            //Debug.Log("miss");
         }
     }
 

@@ -204,10 +204,15 @@ public class Soldier : Enemy
                         yield return null;
                     }
                     timer = 0;
+                    /*
                     if (CanSeePlayer())
+                    {
+                        Debug.LogWarning("HERE");
                         StartCoroutine(PlayerDetected());
+                    }
                     else
-                        yield return StartCoroutine(TurnToFace(targetWaypoint));
+                    */
+                    yield return StartCoroutine(TurnToFace(targetWaypoint));
 
                 }
                 else
@@ -221,6 +226,7 @@ public class Soldier : Enemy
             {
                 //Player detected
                 anim.SetBool("PlayerSpotted", true);
+                Debug.LogWarning("THIS SPOT");
                 yield return StartCoroutine(TurnToFace(player.transform.position));
                 yield return new WaitForSeconds(3);
                 yield return StartCoroutine(TurnToFace(targetWaypoint));

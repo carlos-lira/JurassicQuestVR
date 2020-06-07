@@ -136,6 +136,10 @@ public class OVRGrabber : MonoBehaviour
                 m_parentTransform.rotation = Quaternion.identity;
             }
         }
+
+        isGrabbing = false;
+        GrabEnd();
+
 		// We're going to setup the player collision to ignore the hand collision.
 		SetPlayerIgnoreCollision(gameObject, true);
     }

@@ -32,11 +32,18 @@ public class ShootIfGrabbed : MonoBehaviour
         {
             transform.SetParent(ovrGrabbable.grabbedBy.transform);
 
-            transform.position = ovrGrabbable.grabbedBy.transform.position; //+ offset;
-            if(ovrGrabbable.grabbedBy.name.Contains("Right"))
-                transform.rotation = ovrGrabbable.grabbedBy.transform.rotation * Quaternion.Euler(0, 0, 90);
+            if (ovrGrabbable.grabbedBy.name.Contains("Right"))
+            {
+                transform.position = (ovrGrabbable.grabbedBy.transform.position + ovrGrabbable.grabbedBy.transform.rotation * offset.position);
+                transform.rotation = ovrGrabbable.grabbedBy.transform.rotation * Quaternion.Euler(0, 0, 90) * offset.rotation;
+            }
             else
-                transform.rotation = ovrGrabbable.grabbedBy.transform.rotation * Quaternion.Euler(0, 0, -90);
+            {
+                //Adjusting offset for left-hand
+                Vector3 correctedPosition = new Vector3(-offset.position.x, offset.position.y, offset.position.z);
+                transform.position = (ovrGrabbable.grabbedBy.transform.position + ovrGrabbable.grabbedBy.transform.rotation * correctedPosition);
+                transform.rotation = ovrGrabbable.grabbedBy.transform.rotation * Quaternion.Euler(0, 0, -90) * offset.rotation;
+            }
 
             if (OVRInput.GetDown(shootingButton, ovrGrabbable.grabbedBy.GetController()))
             {

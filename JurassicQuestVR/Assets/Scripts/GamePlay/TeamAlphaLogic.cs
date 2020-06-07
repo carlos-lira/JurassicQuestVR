@@ -7,12 +7,16 @@ public class TeamAlphaLogic : LevelManager
     GameObject lauraObject;
     Laura laura;
 
+    public GameObject skipDialogueCanvas;
+
     int currentPhase = 1;
     public Phase1 phase1;
     public Phase2 phase2;
     public Phase3 phase3;
     public Phase4 phase4;
 
+
+    private bool skippedDialogue = false;
     
     public override void Start()
     {
@@ -59,9 +63,20 @@ public class TeamAlphaLogic : LevelManager
             phase2.audioPlayed = true;
             laura.Talk(phase2.audioClip);
         }
-        //Check if Laura stopped talking
-        else if (!laura.IsTalking() && phase2.audioPlayed && !(phase2.GetDistance(lauraObject.transform.position, phase2.targetPosition.position) <= 1.5f))
+        //check for dialogue skip
+        else if (laura.IsTalking() && Time.timeScale != 0)
         {
+            if (!skippedDialogue)
+                skipDialogueCanvas.SetActive(true);
+
+            if (OVRInput.GetDown(OVRInput.Button.Four) && !skippedDialogue)
+                StartCoroutine(SkipDialogue());
+        }
+        //Check if Laura stopped talking
+        else if (!laura.IsTalking() && phase2.audioPlayed && !(phase2.GetDistance(lauraObject.transform.position, phase2.targetPosition.position) <= 1.5f) && !skippedDialogue)
+        {
+            skipDialogueCanvas.SetActive(false);
+
             StopAllCoroutines();
             laura.Run(phase2.targetPosition.position);
         }
@@ -73,8 +88,32 @@ public class TeamAlphaLogic : LevelManager
 
     }
 
+    IEnumerator SkipDialogue()
+    {
+        skippedDialogue = true;
+        skipDialogueCanvas.SetActive(false);
+        player.GetComponentInChildren<OVRScreenFade>(true).FadeOut();       
+        yield return new WaitForSeconds(2);
+
+        laura.Teleport(phase2.targetPosition.position);
+        laura.StopTalking();
+        CharacterController charController = player.GetComponent<CharacterController>();
+        charController.enabled = false;
+        player.transform.position = new Vector3(phase2.targetPosition.position.x, phase2.targetPosition.position.y, phase2.targetPosition.position.z + 5);
+        player.transform.eulerAngles = new Vector3(0, 180, 0);
+        charController.enabled = true;
+        phase2.completed = true;
+        yield return new WaitForSeconds(0.5f);
+
+        player.GetComponentInChildren<OVRScreenFade>(true).FadeIn();
+
+        yield return null;
+    }
+
     void Phase3Logic()
     {
+        skipDialogueCanvas.SetActive(false);
+
         //Check if Laura is standing and play audio
         if (!phase3.audioPlayed)
         {

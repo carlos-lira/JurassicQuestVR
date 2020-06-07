@@ -185,7 +185,11 @@ namespace OVRTouchSample
             // Flex
             // blend between open hand and fully closed fist
             float flex = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, m_controller);
-            m_animator.SetFloat(m_animParamIndexFlex, flex);
+            //UPDATED TO ADJUST TO GUN GRABBING
+            if (!grabbing)
+                m_animator.SetFloat(m_animParamIndexFlex, flex);
+            else
+                m_animator.SetFloat(m_animParamIndexFlex, 0.4f);
 
             // Point
             bool canPoint = !grabbing || grabPose.AllowPointing;
@@ -195,7 +199,12 @@ namespace OVRTouchSample
             // Thumbs up
             bool canThumbsUp = !grabbing || grabPose.AllowThumbsUp;
             float thumbsUp = canThumbsUp ? m_thumbsUpBlend : 0.0f;
-            m_animator.SetLayerWeight(m_animLayerIndexThumb, thumbsUp);
+
+            //Modified to fixed position while grabbing
+            if (!grabbing)
+                m_animator.SetLayerWeight(m_animLayerIndexThumb, thumbsUp);
+            else
+                m_animator.SetLayerWeight(m_animLayerIndexThumb, 0.0f);
 
             float pinch = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, m_controller);
             m_animator.SetFloat("Pinch", pinch);

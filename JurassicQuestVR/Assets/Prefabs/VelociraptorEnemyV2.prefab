@@ -1785,7 +1785,7 @@ MonoBehaviour:
   combatSettings:
     attackSound: {fileID: 8300000, guid: 40f00aec0e9bb994298283db24b0b198, type: 3}
     accuracy: 1
-    damage: 1
+    damage: 10
     attackCooldown: 1
   warningSounds:
   - {fileID: 8300000, guid: fbc4e794ae79770479a02d03c28e5fd0, type: 3}
